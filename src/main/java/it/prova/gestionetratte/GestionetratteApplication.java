@@ -56,6 +56,19 @@ public class GestionetratteApplication implements CommandLineRunner{
 		if (trattaService.findByCodiceAndDescrizione(trattaNapoliTorino.getCodice(), trattaNapoliTorino.getDescrizione()).isEmpty()) {
 			trattaService.inserisciNuovo(trattaNapoliTorino);
 		}
+		
+		String codiceAirbus3 = "03";
+		String descrizioneAirbus3 = "AirBus3";
+		Airbus airbus3 = airbusService.findByCodiceAndDescrizione(codiceAirbus3, descrizioneAirbus3);
+		if (airbus3 == null) {
+			airbus3 = new Airbus(codiceAirbus2, descrizioneAirbus2, LocalDate.of(2020, 05, 19), 110);
+			airbusService.inserisciNuovo(airbus2);
+		}
+		
+		Tratta trattaRomaBologna = new Tratta("T3", "Roma-Bologna", LocalDate.of(2023, 06, 3), LocalTime.of(11, 30), LocalTime.of(15, 30), Stato.CONCLUSA, airbus2);
+		if (trattaService.findByCodiceAndDescrizione(trattaRomaBologna.getCodice(), trattaRomaBologna.getDescrizione()).isEmpty()) {
+			trattaService.inserisciNuovo(trattaRomaBologna);
+		}
 	}
 
 }

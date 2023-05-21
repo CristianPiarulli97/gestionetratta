@@ -1,11 +1,13 @@
 package it.prova.gestionetratte.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.prova.gestionetratte.model.Stato;
 import it.prova.gestionetratte.model.Tratta;
 import it.prova.gestionetratte.repository.TrattaRepository;
 import it.prova.gestionetratte.web.api.exception.TrattaNotFoundException;
@@ -63,4 +65,18 @@ public class TrattaServiceImpl implements TrattaService {
 		return repository.findByCodiceAndDescrizione(codice, descrizione);
 	}
 
+	@Override
+	@Transactional
+	public List<Tratta> concludiTratte() {
+		List<Tratta> tratteAttive = repository.findAllTratteAttive();
+		for (Tratta trattaItem : tratteAttive) {
+			LocalDateTime dateTimeAtterraggio = LocalDateTime.of(trattaItem.getData(), trattaItem.getOraAtterraggio());
+			if (dateTimeAtterraggio.isBefore(LocalDateTime.now())) {
+				trattaItem.setStato(Stato.CONCLUSA);
+			}
+		}
+		repository.saveAll(tratteAttive);
+		return tratteAttive;
+	}
+	
 }
