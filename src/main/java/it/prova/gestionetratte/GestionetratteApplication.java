@@ -65,6 +65,7 @@ public class GestionetratteApplication implements CommandLineRunner{
 			airbusService.inserisciNuovo(airbus2);
 		}
 		
+		
 		Tratta trattaRomaBologna = new Tratta("T3", "Roma-Bologna", LocalDate.of(2023, 06, 3), LocalTime.of(11, 30), LocalTime.of(15, 30), Stato.CONCLUSA, airbus2);
 		if (trattaService.findByCodiceAndDescrizione(trattaRomaBologna.getCodice(), trattaRomaBologna.getDescrizione()).isEmpty()) {
 			trattaService.inserisciNuovo(trattaRomaBologna);

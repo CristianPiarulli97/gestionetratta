@@ -154,4 +154,15 @@ public class AirbusDTO {
 			return result;
 		}).collect(Collectors.toList());
 	} 
+	
+	public static List<AirbusDTO> createAirbusDTOListFromModelListConSovrapposizioni(List<Airbus> modelListInput,boolean sovrapposizioni) {
+		return modelListInput.stream().map(airbusEntity -> {
+			AirbusDTO result = AirbusDTO.buildAirbusDTOFromModel(airbusEntity, sovrapposizioni);
+			if (sovrapposizioni) {
+				result.setTratte(null);
+	
+			}
+			return result;
+		}).collect(Collectors.toList());
+	} 
 }

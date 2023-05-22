@@ -79,4 +79,6 @@ public class TrattaServiceImpl implements TrattaService {
 		return tratteAttive;
 	}
 	
+	
+	
 }

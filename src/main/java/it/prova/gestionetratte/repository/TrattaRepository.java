@@ -20,4 +20,9 @@ public interface TrattaRepository extends CrudRepository<Tratta, Long>,CustomTra
 
 	@Query("select t from Tratta t where t.stato = 0")
 	List<Tratta> findAllTratteAttive();
+
+	
+	@Query ("select t from Tratta t where t.stato = 0")
+	List<Tratta> findAllTratteSovrapposte();
+	
 }

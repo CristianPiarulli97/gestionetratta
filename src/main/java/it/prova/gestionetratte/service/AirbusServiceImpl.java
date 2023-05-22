@@ -72,6 +72,9 @@ public class AirbusServiceImpl implements AirbusService {
 		return repository.findByCodiceAndDescrizione(codice, descrizione);
 	}
 
+	public List<Airbus> cercaAirbusSovrapposti(){
+		return repository.findAllAirbusSovrapposti();
+	}
 	
 
 }
